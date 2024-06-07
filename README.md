@@ -22,3 +22,11 @@ Generate CRUD for EasyAdmin: *php bin/console make:\admin:\dashboard*
 ### USER
 Create user : *php bin/console make:user*
   => Fields can be added to User after creation with php bin/console make:entity User
+
+### CREATE LOGIN FORM
+Generate Dashboard :  *php bin/console make:security:form-login*
+Generate Controller : *php bin/console make:controller Login*
+
+### CREATE REGISTER FORM
+Install dependencie :  *composer require symfonycasts/verify-email-bundle*
+Generate Controller : *php bin/console make:controller Login*
