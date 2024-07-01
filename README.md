@@ -11,12 +11,12 @@ Use Doctrine : *composer require symfony/orm-pack && composer require --dev symf
 Enable the right DATABASE_URL in .env : *DATABASE_URL="mysql://username:password@127.0.0.1/PatPatoune?serverVersion=8.0.36-0ubuntu0.22.04.1&charset=utf8mb4"*  
 Create database : *php bin/console doctrine\:database\:create*  
 Create entities : *php bin/console make:entity Entity*  
-Make migrations & migrate : *php bin/console make:migration && php bin/console doctrine:\migrations:\migrate*  
+Make migrations & migrate : *php bin/console make:migration && php bin/console doctrine\:migrations\:migrate*  
 
 ### CRUD & DASHBOARD  
 Generate CRUD : *php bin/console make:crud Entity*  
-Generate Dashboard : *php bin/console make:\admin:\dashboard*  
-Generate CRUD for EasyAdmin: *php bin/console make:\admin:\dashboard*  
+Generate Dashboard : *php bin/console make\:admin\:dashboard*  
+Generate CRUD for EasyAdmin: *php bin/console make\:admin\:dashboard*  
 
 
 ### USER  
