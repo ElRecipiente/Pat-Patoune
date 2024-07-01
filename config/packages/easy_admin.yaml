@@ -1,0 +1,8 @@
+# config/packages/easy_admin.yaml
+easy_admin:
+  entities:
+    - App\Entity\Animal
+    - App\Entity\User
+    - App\Entity\Vax
+    - App\Entity\Visit
+    - App\Entity\Notification
