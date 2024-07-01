@@ -28,5 +28,5 @@ Generate Dashboard :  *php bin/console make:security:form-login*
 Generate Controller : *php bin/console make:controller Login*  
 
 ### CREATE REGISTER FORM  
-Install dependencie :  *composer require symfonycasts/verify-email-bundle*  
+Install dependencie : *composer require symfonycasts/verify-email-bundle*  
 Generate Controller : *php bin/console make:controller Login*  
