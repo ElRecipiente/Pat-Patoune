@@ -29,7 +29,7 @@ class Animal
     private ?string $sex = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $birth_Ãdate = null;
+    private ?\DateTimeInterface $birth_date = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $sterilisation_date = null;
@@ -111,14 +111,14 @@ class Animal
         return $this;
     }
 
-    public function getBirthÃdate(): ?\DateTimeInterface
+    public function getBirthdate(): ?\DateTimeInterface
     {
-        return $this->birth_Ãdate;
+        return $this->birth_date;
     }
 
-    public function setBirthÃdate(\DateTimeInterface $birth_Ãdate): static
+    public function setBirthdate(\DateTimeInterface $birth_date): static
     {
-        $this->birth_Ãdate = $birth_Ãdate;
+        $this->birth_date = $birth_date;
 
         return $this;
     }
