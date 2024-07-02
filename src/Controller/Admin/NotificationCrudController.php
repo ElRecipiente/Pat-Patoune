@@ -15,14 +15,15 @@ class NotificationCrudController extends AbstractCrudController
         return Notification::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            IdField::new('id')
+                ->hideOnForm(),
+            TextField::new('sending_date')
+                ->setLabel("Date d'envoi"),
+            TextEditorField::new('status')
+                ->setLabel("Statut"),
         ];
     }
-    */
 }
