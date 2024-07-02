@@ -12,6 +12,26 @@
         {% endblock %}
     </head>
     <body>
+    
+    <header>
+        <nav>
+            <!-- Add your navigation links here -->
+            <ul>
+                <li><a href="/">Pat'Patoune</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/admin">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
         {% block body %}{% endblock %}
+    </div>
+            
+    <footer>
+        <p>©© 2024 Pat'Patoune</p>
+    </footer>
+    
     </body>
 </html>
