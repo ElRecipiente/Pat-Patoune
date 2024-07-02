@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vax{% endblock %}
+
+{% block body %}
+    <h1>Vax</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vax.id }}</td>
+            </tr>
+            <tr>
+                <th>Vax_name</th>
+                <td>{{ vax.vaxName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_vax_index') }}">back to list</a>
+
+    <a href="{{ path('app_vax_edit', {'id': vax.id}) }}">edit</a>
+
+    {{ include('vax/_delete_form.html.twig') }}
+{% endblock %}

@@ -19,13 +19,13 @@ class Animal
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $identification_number = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $tatoo_number = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 255)]
     private ?string $sex = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -80,7 +80,7 @@ class Animal
         return $this->identification_number;
     }
 
-    public function setIdentificationNumber(int $identification_number): static
+    public function setIdentificationNumber(?int $identification_number): static
     {
         $this->identification_number = $identification_number;
 
@@ -92,7 +92,7 @@ class Animal
         return $this->tatoo_number;
     }
 
-    public function setTatooNumber(int $tatoo_number): static
+    public function setTatooNumber(?int $tatoo_number): static
     {
         $this->tatoo_number = $tatoo_number;
 
@@ -111,12 +111,12 @@ class Animal
         return $this;
     }
 
-    public function getBirthdate(): ?\DateTimeInterface
+    public function getBirthDate(): ?\DateTimeInterface
     {
         return $this->birth_date;
     }
 
-    public function setBirthdate(\DateTimeInterface $birth_date): static
+    public function setBirthDate(\DateTimeInterface $birth_date): static
     {
         $this->birth_date = $birth_date;
 

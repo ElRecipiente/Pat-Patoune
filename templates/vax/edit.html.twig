@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Vax{% endblock %}
+
+{% block body %}
+    <h1>Edit Vax</h1>
+
+    {{ include('vax/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_vax_index') }}">back to list</a>
+
+    {{ include('vax/_delete_form.html.twig') }}
+{% endblock %}

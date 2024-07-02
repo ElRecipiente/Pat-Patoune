@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Animal;
+use App\Entity\Notification;
 use App\Entity\User;
 use App\Entity\Vax;
 use App\Entity\Visit;
@@ -31,9 +32,10 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Animals', 'fa fa-home', Animal::class);
-        yield MenuItem::linkToCrud('Users', 'fa fa-home', User::class);
-        yield MenuItem::linkToCrud('Vaccinations', 'fa fa-home', Vax::class);
-        yield MenuItem::linkToCrud('Visits', 'fa fa-home', Visit::class);
+        yield MenuItem::linkToCrud('Animaux', 'fa fa-paw', Animal::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fa fa-user', User::class);
+        yield MenuItem::linkToCrud('Vaccinations', 'fa fa-syringe', Vax::class);
+        yield MenuItem::linkToCrud('Visites', 'fa fa-calendar', Visit::class);
+        yield MenuItem::linkToCrud('Notifications', 'fa fa-bell', Notification::class);
     }
 }
