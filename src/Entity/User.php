@@ -43,7 +43,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $phone_number = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $address = null;
+    private ?string $adress = null;
+
+    #[ORM\Column]
+    private array $role = [];
 
     /**
      * @var Collection<int, Animal>
@@ -174,14 +177,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getAdress(): ?string
     {
-        return $this->address;
+        return $this->adress;
     }
 
-    public function setAddress(string $address): static
+    public function setAdress(string $adress): static
     {
-        $this->address = $address;
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    public function getRole(): array
+    {
+        return $this->role;
+    }
+
+    public function setRole(array $role): static
+    {
+        $this->role = $role;
 
         return $this;
     }
