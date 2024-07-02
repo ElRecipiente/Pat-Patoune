@@ -29,6 +29,11 @@ class Vax
         $this->visits = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->vax_name;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
