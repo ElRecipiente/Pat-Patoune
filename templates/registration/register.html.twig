@@ -10,6 +10,26 @@
 
         {{ form_start(registrationForm) }}
             <div class="input-group">
+                {{ form_label(registrationForm.firstName) }}
+                {{ form_widget(registrationForm.firstName) }}
+                {{ form_errors(registrationForm.firstName) }}
+            </div>
+            <div class="input-group">
+                {{ form_label(registrationForm.lastName) }}
+                {{ form_widget(registrationForm.lastName) }}
+                {{ form_errors(registrationForm.lastName) }}
+            </div>
+            <div class="input-group">
+                {{ form_label(registrationForm.phoneNumber) }}
+                {{ form_widget(registrationForm.phoneNumber) }}
+                {{ form_errors(registrationForm.phoneNumber) }}
+            </div>
+            <div class="input-group">
+                {{ form_label(registrationForm.adress) }}
+                {{ form_widget(registrationForm.adress) }}
+                {{ form_errors(registrationForm.adress) }}
+            </div>
+            <div class="input-group">
                 {{ form_label(registrationForm.email) }}
                 {{ form_widget(registrationForm.email) }}
                 {{ form_errors(registrationForm.email) }}
