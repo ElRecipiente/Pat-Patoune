@@ -1,7 +1,8 @@
 # Pat-Patoune  
 
 ## START THE PROJECT
-For now, just need to use the symfony command : *symfony server:start*
+First, install dependencies : *composer install*
+Next, just need to use the symfony command : *symfony server:start*
 
 ## TUTORIAL : How we made this project  
 
