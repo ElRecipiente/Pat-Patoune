@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\VisitRepository;
 
 class MailerController extends AbstractController
 {
@@ -14,7 +15,8 @@ class MailerController extends AbstractController
     public function sendEmail(MailerInterface $mailer): Response
     {
         $user = $this->getUser();
-        //var_dump($user);
+        
+        var_dump($user);
 
         $email = (new Email())
             ->from('pat@patpatoune.com')

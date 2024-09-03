@@ -31,13 +31,15 @@ class VisitRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Visit
-    //    {
-    //        return $this->createQueryBuilder('v')
-    //            ->andWhere('v.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findNextVisit()
+    {
+        return $this->createQueryBuilder('v')
+            ->leftJoin('v.animal', 'a')
+            ->addSelect('a')
+            ->leftJoin('a.user', 'u')
+            ->addSelect('u')
+            ->orderBy('v.visit_date', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

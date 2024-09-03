@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/visit')]
 class VisitController extends AbstractController
 {
+
     #[Route('/', name: 'app_visit_index', methods: ['GET'])]
     public function index(VisitRepository $visitRepository): Response
     {
@@ -22,6 +23,20 @@ class VisitController extends AbstractController
         ]);
     }
 
+
+    #[Route('/nextVisit', name: 'next_visit')]
+    public function nextVisit(VisitRepository $visitRepository): Response
+    {
+        $visits = $visitRepository->findNextVisit();
+     //   var_dump($visits);
+
+        return $this->render('visit/nextVisit.html.twig', [
+            'visits' => $visits,
+        ]);
+    }
+
+    
+    
     #[Route('/new', name: 'app_visit_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -78,4 +93,6 @@ class VisitController extends AbstractController
 
         return $this->redirectToRoute('app_visit_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }
