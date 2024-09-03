@@ -11,7 +11,7 @@
             <li>
                 <h2>{{ animal.name }}</h2>
                 <a class="button" href="#">Carnet de {{ animal.name }}</a>
-                <a class="button" href="#">Visites de {{ animal.name }}</a>
+                <a class="button" href="/visit/{{animal.id}}">Visites de {{ animal.name }}</a>
             </li>
         {% endfor %}
     </ul>

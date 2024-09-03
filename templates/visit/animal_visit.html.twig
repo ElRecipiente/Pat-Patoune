@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visit index{% endblock %}
+
+{% block body %}
+<div class="visit">
+    {% include 'includes/back_personnal_space.html.twig' %}
+    <h1>Visites de {{ animal.name }}</h1>
+
+    {% set sortedVisits = visits|sort((a, b) => b.visitDate <=> a.visitDate) %}
+    <h2>Visites à venir</h2>
+    <ul>
+    {% for visit in sortedVisits %}
+        {% if visit.visitDate|date('Y-m-d') >= date('now')|date('Y-m-d') %}
+            <li class="visit__list__frame">
+            {% for vax in visit.vax %}
+                <p>{{ vax }}</p>
+            {% endfor %}
+            <p>Le {{ visit.visitDate ? visit.visitDate|date('d/m/Y') : '' }}</p>
+            </li>
+        {% endif %}
+    {% else %}
+        <li>
+            <p colspan="3">Pas de visites à venir,</p>
+            <p colspan="3">04 12 34 56 78 pour prendre rendez-vous</p>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Visites passées</h2>
+    <ul>
+    {% for visit in sortedVisits %}
+        {% if visit.visitDate|date('Y-m-d') < date('now')|date('Y-m-d') %}
+            <li class="visit__list__frame">
+            {% for vax in visit.vax %}
+                <p>{{ vax }}</p>
+            {% endfor %}
+            <p>Le {{ visit.visitDate ? visit.visitDate|date('d/m/Y') : '' }}</p>
+            </li>
+        {% endif %}
+    {% else %}
+        <li>
+            <p colspan="3">Pas encore de visite effectuée</p>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
