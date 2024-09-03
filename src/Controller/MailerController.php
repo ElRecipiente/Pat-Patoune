@@ -14,7 +14,7 @@ class MailerController extends AbstractController
     public function sendEmail(MailerInterface $mailer): Response
     {
         $user = $this->getUser();
-        var_dump($user);
+        //var_dump($user);
 
         $email = (new Email())
             ->from('pat@patpatoune.com')
@@ -24,6 +24,6 @@ class MailerController extends AbstractController
 
         $mailer->send($email);
 
-         return new Response('Test email sent.');
+         return new Response('Email envoyé.');
     }
 }
