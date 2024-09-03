@@ -34,6 +34,8 @@ header {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    align-items: center;
+    width: 80%;
 }
 
 .container > * {
@@ -47,8 +49,15 @@ header {
     text-decoration: none;
     color: white;
     background-color: #f36951 ;
-    padding: 24px;
+    padding: 12px;
+    margin: 12px 12px 12px 0;
     width: fit-content;
+    border-radius: 8px;
+}
+
+.button.bg_white {
+    background-color: white;
+    color: #27565C;
 }
 
 nav ul {
