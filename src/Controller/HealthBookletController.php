@@ -33,7 +33,7 @@ class HealthBookletController extends AbstractController
             'Numéro de tatouage' => $current_animal->getTatooNumber(),
             'Sexe' => $current_animal->getSex(),
             'Date de naissance' => $current_animal->getBirthDate()->format('d-m-Y'),
-            'Date de stérilisation' => $current_animal->getSterilisationDate(),
+            'Date de stérilisation' => $current_animal->getSterilisationDate()->format('d-m-Y'),
             'Race de l\'animal' => $current_animal->getBreedType(),
             'Couleur du pelage' => $current_animal->getColor(),
             'Marques distinctives' => $current_animal->getDistinctiveMarks(),
