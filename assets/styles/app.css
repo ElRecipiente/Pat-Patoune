@@ -34,6 +34,8 @@ header {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    align-items: center;
+    width: 80%;
 }
 
 .container > * {
@@ -47,8 +49,24 @@ header {
     text-decoration: none;
     color: white;
     background-color: #f36951 ;
-    padding: 24px;
+    padding: 12px;
+    margin: 12px 12px 12px 0;
     width: fit-content;
+    border-radius: 8px;
+}
+
+.button.bg_white {
+    background-color: white;
+    color: #27565C;
+}
+
+.field {
+    background-color: white;
+    color: #27565C;
+    padding: 12px;
+    margin: 12px 12px 12px 0;
+    width: fit-content;
+    border-radius: 8px;
 }
 
 nav ul {
@@ -138,3 +156,15 @@ h1 {
     color: red;
     margin-bottom: 15px;
 }
+
+.visit {
+    margin: 170px 0 100px 0;
+}
+
+.visit__list__frame {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 12px 0;
+}
+
