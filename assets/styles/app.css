@@ -147,3 +147,15 @@ h1 {
     color: red;
     margin-bottom: 15px;
 }
+
+.visit {
+    margin: 170px 0 100px 0;
+}
+
+.visit__list__frame {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 12px 0;
+}
+
