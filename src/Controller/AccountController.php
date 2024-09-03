@@ -11,8 +11,13 @@ class AccountController extends AbstractController
     #[Route('/account', name: 'app_account')]
     public function index(): Response
     {
+        // user animals
+        $user = $this->getUser();
+        $animals = $user->getAnimals();
+
         return $this->render('account/index.html.twig', [
-            'controller_name' => 'AccountController',
+            'user' => $user,
+            'animals' => $animals,
         ]);
     }
 }

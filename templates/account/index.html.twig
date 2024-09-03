@@ -1,20 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
+{% block title %}Mon espace personnel{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div>
+    <h1>Bonjour {{ user.firstname }} !</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
     <ul>
-        <li>Your controller at <code>/home/nicolas/Simplon/Brief_3/PatPatoune/src/Controller/AccountController.php</code></li>
-        <li>Your template at <code>/home/nicolas/Simplon/Brief_3/PatPatoune/templates/account/index.html.twig</code></li>
+        {% for animal in animals %}
+            <li>
+                <h2>{{ animal.name }}</h2>
+                <a class="button" href="#">Carnet de {{ animal.name }}</a>
+                <a class="button" href="#">Visites de {{ animal.name }}</a>
+            </li>
+        {% endfor %}
     </ul>
+
+    <a class="button bg_white" href="#">Ajouter animal</a>
+    <a class="button bg_white" href="#">Se déconnecter</a>
 </div>
 {% endblock %}
