@@ -30,6 +30,19 @@ class VisitController extends AbstractController
         ]);
     }
 
+  
+    #[Route('/nextVisit', name: 'next_visit')]
+    public function nextVisit(VisitRepository $visitRepository): Response
+    {
+        $visits = $visitRepository->findNextVisit();
+     //   var_dump($visits);
+
+        return $this->render('visit/nextVisit.html.twig', [
+            'visits' => $visits,
+        ]);
+    }
+
+    
     #[Route('/{animalId}', name: 'app_animal_visits', methods: ['GET'])]
     public function OneAnimalVisit(int $animalId, VisitRepository $visitRepository, AnimalRepository $animalRepository): Response
     {

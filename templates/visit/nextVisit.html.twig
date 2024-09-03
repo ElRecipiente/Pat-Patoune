@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomePageController!{% endblock %}
+
+{% block body %}
+    <div class="title">
+        <h1>---------------- Prochains RDV ---------------</h1>
+    </div>
+    <ul class="tab">
+        {% for visit in visits %}
+            <li>
+                Prochaine visites : {{ visit.visitDate|date('Y-m-d H:i') }} |
+                Le {{ visit.animal.name }} |
+                de {{ visit.animal.user.firstname }} {{ visit.animal.user.lastname }} |
+                ( {{ visit.animal.user.email }} )
+            </li>
+        {% else %}
+            <li>No upcoming visits found.</li>
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock %}
