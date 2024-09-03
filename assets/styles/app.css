@@ -60,6 +60,15 @@ header {
     color: #27565C;
 }
 
+.field {
+    background-color: white;
+    color: #27565C;
+    padding: 12px;
+    margin: 12px 12px 12px 0;
+    width: fit-content;
+    border-radius: 8px;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
