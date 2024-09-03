@@ -36,9 +36,9 @@ class AnimalCrudController extends AbstractCrudController
             ChoiceField::new('sex')
                 ->setLabel('Sexe')
                 ->setChoices([
-                    'Mâle' => 'male',
-                    'Femelle' => 'female',
-                    'Autre' => 'other',
+                    'Mâle' => 'Mâle',
+                    'Femelle' => 'Femelle',
+                    'Autre' => 'Autre',
                 ]),
             DateField::new('birth_date')
                 ->setLabel('Date de naissance'),
@@ -52,7 +52,6 @@ class AnimalCrudController extends AbstractCrudController
             TextareaField::new('distinctive_marks')
                 ->hideOnIndex()
                 ->setLabel('Marques distinctives'),
-
         ];
     }
 }

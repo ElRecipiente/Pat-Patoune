@@ -4,13 +4,13 @@
 
 {% block body %}
 <div>
-    <h1>Bonjour {{ user.firstname }} !</h1>
+    <h1>Bonjour {{ username }} !</h1>
 
     <ul>
         {% for animal in animals %}
             <li>
                 <h2>{{ animal.name }}</h2>
-                <a class="button" href="#">Carnet de {{ animal.name }}</a>
+                <a class="button" href="/carnet/{{ animal.id }}">Carnet de {{ animal.name }}</a>
                 <a class="button" href="/visit/{{animal.id}}">Visites de {{ animal.name }}</a>
             </li>
         {% endfor %}
