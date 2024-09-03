@@ -10,18 +10,20 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class MailerController extends AbstractController
 {
-    
     #[Route('/mailer', name: 'app_mailer')]
-    public function sendTestEmail(MailerInterface $mailer): Response
+    public function sendEmail(MailerInterface $mailer): Response
     {
+        $user = $this->getUser();
+        var_dump($user);
+
         $email = (new Email())
-            ->from('your-email@example.com')
-            ->to('recipient@example.com')
-            ->subject('Test Email Subject')
-            ->html('<p>This is a test email.</p>');
+            ->from('pat@patpatoune.com')
+            ->to('client@gmail.com')
+            ->subject('Rappel de la vaccination de votre bestiole')
+            ->html('<p>Bonjour, voici le rendez-vous de ...</p>');
 
         $mailer->send($email);
 
-        return new Response('Test email sent.');
+         return new Response('Test email sent.');
     }
 }

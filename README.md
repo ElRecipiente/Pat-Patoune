@@ -4,6 +4,18 @@
 First, install dependencies : *composer install*
 Next, just need to use the symfony command : *symfony server:start*
 
+### CONFIGURE MAILER
+Enable send mail in local
+You can red this doc https://www.axess.fr/blog/conception-web/tester-lenvoi-demails-en-local-avec-une-configuration-offline-pour-apache
+
+For windows modify php.ini to set *smtp_port = 1025*
+
+Install MailHog width Docker with this command : *docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog*
+
+Edit your .env and .env.test :
+*MAILER_DSN=smtp://localhost:1025*
+
+
 ## TUTORIAL : How we made this project  
 
 ### REQUIRED  
