@@ -15,6 +15,8 @@ Install MailHog width Docker with this command : *docker run -d -p 1025:1025 -p 
 Edit your .env and .env.test :
 *MAILER_DSN=smtp://localhost:1025*
 
+### CONFIGURE CRON
+Use Scheduler : *composer require symfony/scheduler*
 
 ## TUTORIAL : How we made this project  
 

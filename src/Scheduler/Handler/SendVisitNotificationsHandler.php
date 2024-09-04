@@ -1,25 +1,28 @@
-<?php
+<?php 
+// src/Scheduler/Handler/SendVisitNotificationsHandler.php
+namespace App\Scheduler\Handler;
 
-namespace App\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\Mailer;
-use Symfony\Component\Mailer\Transport;
-use Symfony\Component\Mime\Email;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\VisitRepository;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+use Symfony\Component\Mime\Email;
+use App\Scheduler\Message\SendVisitNotifications;
 
-class MailerController extends AbstractController
+#[AsMessageHandler]
+class SendVisitNotificationsHandler
 {
-    #[Route('/mailer', name: 'app_mailer')]
-    public function sendEmail(VisitRepository $visitRepository): Response
-    {
-        $transport = Transport::fromDsn($_ENV['MAILER_DSN']);
-        $mailer = new Mailer($transport);
+    private $visitRepository;
+    private $mailer;
 
-        // Récupérer les visites à notifier
-        $visitsToNotify = $visitRepository->findVisitToNotify();
+    public function __construct(VisitRepository $visitRepository, MailerInterface $mailer)
+    {
+        $this->visitRepository = $visitRepository;
+        $this->mailer = $mailer;
+    }
+
+    public function __invoke(SendVisitNotifications $message)
+    {
+        $visitsToNotify = $this->visitRepository->findVisitToNotify();
         $emailDetails = [];
 
         foreach ($visitsToNotify as $index => $visit) {
@@ -41,9 +44,8 @@ class MailerController extends AbstractController
                     $visit->getVisitDate()->format('Y-m-d H:i')
                 ));
 
-            $mailer->send($email);
+            $this->mailer->send($email);
 
-            // Ajouter les détails de l'email dans la liste
             $emailDetails[] = sprintf(
                 "Email envoyé à %s (%s) pour l'animal %s, visite prévue le %s.",
                 $user->getFirstname() . ' ' . $user->getLastname(),
@@ -52,17 +54,9 @@ class MailerController extends AbstractController
                 $visit->getVisitDate()->format('Y-m-d H:i')
             );
 
-            // Ajouter une pause d'une seconde après chaque envoi
             if ($index < count($visitsToNotify) - 1) {
-                sleep(1); // Pause de 1 seconde pour éviter d'être consideré comme spam
+                sleep(1);
             }
         }
-
-        // Construire la réponse avec les détails des emails envoyés
-        $responseMessage = empty($emailDetails) 
-            ? 'Aucun email envoyé.' 
-            : implode("\n", $emailDetails);
-
-        return new Response(nl2br($responseMessage));
     }
 }
