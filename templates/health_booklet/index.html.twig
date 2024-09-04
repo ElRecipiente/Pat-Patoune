@@ -9,7 +9,7 @@
         <ul>
             {% for key, value in animal_info %}
                 {% if value is not same as (animal_info.name) %}
-                    <li class="field">{{ key }} : {{ value }}
+                    <li class="field full">{{ key }} : {{ value }}
                         {% if value is empty %}Non défini{% endif %}
                     </li>
                 {% endif %}
@@ -17,5 +17,6 @@
         </ul>
         <a class="button" href={{ link_to_edit }}>Modifier les informations du carnet</a>
     </div>
+    {% include 'includes/back_personnal_space.html.twig' %}
 
 {% endblock %}

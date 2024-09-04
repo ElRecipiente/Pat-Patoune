@@ -1,4 +1,7 @@
 {{ form_start(form) }}
+<div class="form">
     {{ form_widget(form) }}
-<button class="button">Enregistrer les modifications</button>
+    <button class="button">Enregistrer les modifications</button>
+    <a class="button" href="/carnet/{{ animal.id }}">Annuler les modifications</a>
+</div>
 {{ form_end(form) }}

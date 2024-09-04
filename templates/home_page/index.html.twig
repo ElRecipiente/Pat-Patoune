@@ -3,23 +3,25 @@
 {% block title %}Hello HomePageController!{% endblock %}
 
 {% block body %}
-    <div class="title">
-        <h1>Bienvenue sur le site de la clinique vétérinaire Pat'Patoune</h1>
-    </div>
-    <div class="notre_clinique">
-        <h2>Notre clinique</h2>
-        <p>Chez Pat Patoune, nous prenons soin des chiens, chats et NAC avec des soins complets et personnalisés. Notre équipe veille au bien-être de votre petit compagnon à chaque étape de sa vie.</p>
-    </div>
-    <div class="service_rappel_vaccins">
-        <h2>Service rappel de vaccins</h2>
-        <p>Client chez nous? Ne manquez plus aucun vaccin avec notre service de rappel automatique. Surveillez la santé de votre en toute simplicité.</p>
-        <a class="button" href={{ callback_link }}>Accès service rappel</a>
-    </div>
-    <div class="contact">
-        <h3>Clinique Pat'Patoune</h3>
-        <ul>
-            <li>📞 0412345678</li>
-            <li>🏠 263 Grande Rue 38 000 Grenoble</li>
-        </ul>
+    <div id="homepage">
+        <div class="title">
+            <h1>Bienvenue sur le site de la clinique vétérinaire Pat'Patoune</h1>
+        </div>
+        <div class="notre_clinique">
+            <h2>Notre clinique</h2>
+            <p>Chez Pat Patoune, nous prenons soin des chiens, chats et NAC avec des soins complets et personnalisés. Notre équipe veille au bien-être de votre petit compagnon à chaque étape de sa vie.</p>
+        </div>
+        <div class="service_rappel_vaccins">
+            <h2>Service rappel de vaccins</h2>
+            <p>Client chez nous? Ne manquez plus aucun vaccin avec notre service de rappel automatique. Surveillez la santé de votre en toute simplicité.</p>
+            <a class="button" href={{ callback_link }}>Accès service rappel</a>
+        </div>
+        <div class="contact">
+            <h3>Clinique Pat'Patoune</h3>
+            <ul>
+                <li>📞 0412345678</li>
+                <li>🏠 263 Grande Rue 38 000 Grenoble</li>
+            </ul>
+        </div>
     </div>
 {% endblock %}
