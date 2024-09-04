@@ -1,3 +1,28 @@
+:root {
+    --color-primary: #27565C;
+    --color-primary-faded: #5D8085;
+    --color-secondary: #F36951;
+    --color-secondary-faded: #F68E7C;
+    --color-secondary-reinforced: #ED4F3D;
+    --color-background: #fff;
+    --title-font: 'Rubik-Bold', sans-serif;
+    --body-font: 'Catamaran-Medium', sans-serif;
+}
+
+@font-face {
+    font-family: 'Rubik-Bold';
+    src: url('./fonts/Rubik-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Catamaran-Medium';
+    src: url('./fonts/Catamaran-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* RESET */
 * {
     margin: 0;
@@ -9,25 +34,47 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background-color: var(--color-background);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
     margin: 0;
 }
 
+p {
+    color: var(--color-primary);
+    font-family: var(--body-font);
+}
 
 header {
-    height: 50px;
-    background-color: #333;
-    color: #fff;
-    position: fixed;
+    height: 78px;
+    border-bottom: 8px solid var(--color-secondary); 
     top: 0;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.header__nav {
+    width: 100%;
+}
+
+.header__links {
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__logo {
+     height: 37px;
+}
+
+header a {
+    color: var(--color-primary);
 }
 
 .container {
@@ -36,6 +83,7 @@ header {
     justify-content: center;
     align-items: center;
     width: 80%;
+    flex: 1;
 }
 
 .container > * {
@@ -47,8 +95,8 @@ header {
 .button {
     display: block;
     text-decoration: none;
-    color: white;
-    background-color: #f36951 ;
+    color: var(--color-background);
+    background-color: var(--color-secondary);
     padding: 12px;
     margin: 12px 12px 12px 0;
     width: fit-content;
@@ -57,12 +105,12 @@ header {
 
 .button.bg_white {
     background-color: white;
-    color: #27565C;
+    color: var(--color-primary);
 }
 
 .field {
     background-color: white;
-    color: #27565C;
+    color: var(--color-primary);
     padding: 12px;
     margin: 12px 12px 12px 0;
     width: fit-content;
@@ -81,25 +129,42 @@ nav li {
 }
 
 nav a {
-    color: #fff;
     text-decoration: none;
     font-size: 16px;
 }
 
 footer {
-    height: 90px;
-    background-color: #333;
-    color: #fff;
-    position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: top;
     justify-content: center;
 }
 
+.footer__image {
+    width: 245px;
+    margin: auto;
+}
+
+.footer__container {
+    width: 100%;
+    background-color: var(--color-secondary);
+    height: 50px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__container p {
+    font-family: var(--title-font);
+    color: var(--color-background);
+    font-size: 12px;
+}
+
 .login-wrapper {
-    background-color: #fff;
+    background-color: var(--color-background);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -108,7 +173,7 @@ footer {
 }
 
 .register-wrapper {
-    background-color: #fff;
+    background-color: var(--color-background);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -118,6 +183,21 @@ footer {
 
 h1 {
     margin-bottom: 20px;
+    color: var(--color-primary);
+    font-size: 28px;
+    font-family: var(--title-font);
+}
+
+h2 {
+    color: var(--color-primary);
+    font-size: 24px;
+    font-family: var(--title-font);
+}
+
+h2 {
+    color: var(--color-primary);
+    font-size: 20px;
+    font-family: var(--title-font);
 }
 
 .input-group {
@@ -168,3 +248,43 @@ h1 {
     margin: 12px 0;
 }
 
+
+@media (min-width: 768px) {
+    p {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    header {
+        height: 90px;
+    }
+
+    .header__logo {
+        height: 50px;
+   }
+
+   .header__links {
+        max-width: 1440px;
+        padding: 60px;
+    }
+
+    .footer__image {
+        width: calc(33% - 40px);
+        max-width: 422px;
+    }
+
+    .footer__container {
+        font-size: 16px;
+    }
+}
