@@ -42,4 +42,24 @@ class VisitRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findVisitToNotify()
+    {
+        $now = new \DateTime();  // Date actuelle
+        $futureDate = (new \DateTime())->modify('+15 days');  // Choisir le nombre de jours après aujourd'hui à afficher
+    
+        return $this->createQueryBuilder('v')
+            ->leftJoin('v.animal', 'a')
+            ->addSelect('a')
+            ->leftJoin('a.user', 'u')
+            ->addSelect('u')
+            ->where('v.visit_date BETWEEN :now AND :futureDate')
+            ->setParameter('now', $now)
+            ->setParameter('futureDate', $futureDate)
+            ->orderBy('v.visit_date', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    
+
 }

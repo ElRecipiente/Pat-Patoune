@@ -36,9 +36,11 @@ class VisitController extends AbstractController
     {
         $visits = $visitRepository->findNextVisit();
      //   var_dump($visits);
+        $visitsToNotify = $visitRepository->findVisitToNotify();
 
         return $this->render('visit/nextVisit.html.twig', [
             'visits' => $visits,
+            'visitsToNotify' => $visitsToNotify,
         ]);
     }
 
