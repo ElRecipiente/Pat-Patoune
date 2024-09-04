@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Animal;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,7 +25,12 @@ class HealthBookletFormType extends AbstractType
                 'label' => 'Numéro de tatouage',
                 'attr' => ['class' => 'field'],
             ])
-            ->add('sex', null, [
+            ->add('sex', ChoiceType::class, [
+                'choices'  => [
+                    'Mâle' => 'Mâle',
+                    'Femelle' => 'Femelle',
+                    'Autre' => 'Autre',
+                ],
                 'label' => 'Sexe',
                 'attr' => ['class' => 'field'],
             ])
