@@ -14,16 +14,8 @@
                     </li>
                 {% endif %}
             {% endfor %}
-
-{#            <li class="field">Numéro d'identification : {{ animal_info.identification_number }}{% if animal_info.identification_number is empty %}Non défini{% endif %}</li>#}
-{#            <li class="field">Numéro de tatouage : {{ animal_info.tatoo_number }}{% if animal_info.tatoo_number is empty %}Non défini{% endif %}</li>#}
-{#            <li class="field">Sexe : {{ animal_info.sex }}{% if animal_info.sex is empty %}Non défini{% endif %}</li>#}
-{#            <li class="field">Date de naissance : {{ animal_info.birth_date|date('d/m/Y') }}{% if animal_info.birth_date is empty %}Non défini{% endif %}</li>#}
-{#            <li class="field">Date de stérilisation : {{ animal_info.sterilisation_date }}{% if animal_info.sterilisation_date is empty %}Non défini{% endif %}</li>#}
-{#            <li class="field">Race de l'animal : {{ animal_info.breed_type }}{% if animal_info.breed_type is empty %}Non défini{% endif %}</li>#}
-{#            <li class="field">Couleur du pelage : {{ animal_info.color }}{% if animal_info.color is empty %}Non défini{% endif %}</li>#}
-{#            <li class="field">Marques distinctives : {{ animal_info.distinctive_marks }}{% if animal_info.distinctive_marks is empty %}Non défini{% endif %}</li>#}
         </ul>
+        <a class="button" href={{ link_to_edit }}>Modifier les informations du carnet</a>
     </div>
 
 {% endblock %}

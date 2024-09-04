@@ -2,8 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Animal;
 use App\Entity\User;
+use App\Form\AnimalType;
+use App\Form\HealthBookletFormType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -42,6 +47,26 @@ class HealthBookletController extends AbstractController
 
         return $this->render('health_booklet/index.html.twig', [
             'animal_info' => $animal_info,
+            'link_to_edit' => '/modifier_le_carnet_de_sante/'.$id,
+        ]);
+    }
+
+
+    #[Route('/modifier_le_carnet_de_sante/{id}', name: 'app_health_booklet_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Animal $animal, EntityManagerInterface $entityManager, $id): Response
+    {
+        $form = $this->createForm(HealthBookletFormType::class, $animal);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_health_booklet', ['id' => $id], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('health_booklet/edit.html.twig', [
+            'animal' => $animal,
+            'form' => $form,
         ]);
     }
 }
