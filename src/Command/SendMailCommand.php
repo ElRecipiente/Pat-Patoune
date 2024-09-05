@@ -1,31 +1,50 @@
 <?php
+// src/Command/SendMailCommand.php
+namespace App\Command;
 
-namespace App\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
-use Symfony\Component\Mime\Email;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\VisitRepository;
 
-class MailerController extends AbstractController
+class SendMailCommand extends Command
 {
-    #[Route('/mailer', name: 'app_mailer')]
-    public function sendEmail(VisitRepository $visitRepository): Response
+    protected static $defaultName = 'app:send-mail';
+
+    private $mailer;
+    private $visitRepository;
+
+    public function __construct(MailerInterface $mailer, VisitRepository $visitRepository)
+    {
+        parent::__construct();
+        $this->mailer = $mailer;
+        $this->visitRepository = $visitRepository;
+    }
+
+    protected function configure(): void
+    {
+        $this
+            ->setDescription('Envoie des emails pour les visites à notifier.');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $transport = Transport::fromDsn($_ENV['MAILER_DSN']);
         $mailer = new Mailer($transport);
 
         // Récupérer les visites à notifier
-        $visitsToNotify = $visitRepository->findVisitToNotify();
+        $visitsToNotify = $this->visitRepository->findVisitToNotify();
         $emailDetails = [];
 
         foreach ($visitsToNotify as $index => $visit) {
             $user = $visit->getAnimal()->getUser();
             $animal = $visit->getAnimal();
 
+            // Créer l'email
             $email = (new Email())
                 ->from('pat@patpatoune.com')
                 ->to($user->getEmail())
@@ -41,6 +60,7 @@ class MailerController extends AbstractController
                     $visit->getVisitDate()->format('Y-m-d H:i')
                 ));
 
+            // Envoyer l'email
             $mailer->send($email);
 
             // Ajouter les détails de l'email dans la liste
@@ -52,17 +72,15 @@ class MailerController extends AbstractController
                 $visit->getVisitDate()->format('Y-m-d H:i')
             );
 
-            // Ajouter une pause d'une seconde après chaque envoi
+            // Pause pour éviter l'envoi trop rapide
             if ($index < count($visitsToNotify) - 1) {
-                sleep(1); // Pause de 1 seconde pour éviter d'être consideré comme spam
+                sleep(1); // Pause de 1 seconde
             }
         }
 
-        // Construire la réponse avec les détails des emails envoyés
-        $responseMessage = empty($emailDetails) 
-            ? 'Aucun email envoyé.' 
-            : implode("\n", $emailDetails);
+        // Sortir le résultat
+        $output->writeln(empty($emailDetails) ? 'Aucun email envoyé.' : implode("\n", $emailDetails));
 
-        return new Response(nl2br($responseMessage));
+        return Command::SUCCESS;
     }
 }

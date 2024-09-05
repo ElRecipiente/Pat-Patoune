@@ -4,15 +4,31 @@
 
 {% block body %}
     <div class="title">
-        <h1>---------------- Prochains RDV ---------------</h1>
+        <h1>---------------- Next visits ---------------</h1>
     </div>
     <ul class="tab">
         {% for visit in visits %}
             <li>
-                Prochaine visites : {{ visit.visitDate|date('Y-m-d H:i') }} |
-                Le {{ visit.animal.name }} |
-                de {{ visit.animal.user.firstname }} {{ visit.animal.user.lastname }} |
-                ( {{ visit.animal.user.email }} )
+                Prochaine visites : {{ visit.visitDate|date('Y-m-d H:i') }} 
+                pour le {{ visit.animal.name }} 
+                de {{ visit.animal.user.firstname }} {{ visit.animal.user.lastname }} 
+                ({{ visit.animal.user.email }})
+            </li>
+        {% else %}
+            <li>No upcoming visits found.</li>
+        {% endfor %}
+    </ul>
+    
+    <div class="title">
+        <h1>---------------- visitsToNotify ---------------</h1>
+    </div>
+    <ul class="tab">
+        {% for visit in visitsToNotify %}
+            <li>
+                <b>Notification à envoyer</b> : {{ visit.visitDate|date('Y-m-d H:i') }} 
+                pour le {{ visit.animal.name }} 
+                de {{ visit.animal.user.firstname }} {{ visit.animal.user.lastname }} 
+                ({{ visit.animal.user.email }})
             </li>
         {% else %}
             <li>No upcoming visits found.</li>

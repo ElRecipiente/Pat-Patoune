@@ -15,7 +15,6 @@ Install MailHog width Docker with this command : *docker run -d -p 1025:1025 -p 
 Edit your .env and .env.test :
 *MAILER_DSN=smtp://localhost:1025*
 
-
 ## TUTORIAL : How we made this project  
 
 ### REQUIRED  
@@ -46,3 +45,16 @@ Generate Controller : *php bin/console make:controller Login*
 ### CREATE REGISTER FORM  
 Install dependencie : *composer require symfonycasts/verify-email-bundle*  
 Generate Controller : *php bin/console make:controller Login*  
+
+### CONFIGURE TASK CRON
+(if not present) Generate command : *php bin/console make:command SendMailCommand*
+Configure cron task :
+ - Linux : 
+    *crontab -e*
+    * * * * * /usr/bin/php /path/to/your/project/bin/console app:send-mail >> /dev/null 2>&1
+ - Windows : 
+    *schtasks /create /sc minute /mo 1 /tn "SendMailTask" /tr "\"C:\path\to\php\php.exe\" \"C:\path\to\project\bin\console\" app:send-mail"*
+
+Run task : *php bin/console app:send-mail*
+
+Enable task when project launch : ?????????????
