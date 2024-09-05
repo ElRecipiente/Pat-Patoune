@@ -1,27 +1,42 @@
-<?php 
-// src/Scheduler/Handler/SendVisitNotificationsHandler.php
-namespace App\Scheduler\Handler;
+<?php
+// src/Command/SendMailCommand.php
+namespace App\Command;
 
-use App\Repository\VisitRepository;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Mime\Email;
-use App\Scheduler\Message\SendVisitNotifications;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
+use App\Repository\VisitRepository;
 
-#[AsMessageHandler]
-class SendVisitNotificationsHandler
+class SendMailCommand extends Command
 {
-    private $visitRepository;
-    private $mailer;
+    protected static $defaultName = 'app:send-mail';
 
-    public function __construct(VisitRepository $visitRepository, MailerInterface $mailer)
+    private $mailer;
+    private $visitRepository;
+
+    public function __construct(MailerInterface $mailer, VisitRepository $visitRepository)
     {
-        $this->visitRepository = $visitRepository;
+        parent::__construct();
         $this->mailer = $mailer;
+        $this->visitRepository = $visitRepository;
     }
 
-    public function __invoke(SendVisitNotifications $message)
+    protected function configure(): void
     {
+        $this
+            ->setDescription('Envoie des emails pour les visites à notifier.');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $transport = Transport::fromDsn($_ENV['MAILER_DSN']);
+        $mailer = new Mailer($transport);
+
+        // Récupérer les visites à notifier
         $visitsToNotify = $this->visitRepository->findVisitToNotify();
         $emailDetails = [];
 
@@ -29,6 +44,7 @@ class SendVisitNotificationsHandler
             $user = $visit->getAnimal()->getUser();
             $animal = $visit->getAnimal();
 
+            // Créer l'email
             $email = (new Email())
                 ->from('pat@patpatoune.com')
                 ->to($user->getEmail())
@@ -44,8 +60,10 @@ class SendVisitNotificationsHandler
                     $visit->getVisitDate()->format('Y-m-d H:i')
                 ));
 
-            $this->mailer->send($email);
+            // Envoyer l'email
+            $mailer->send($email);
 
+            // Ajouter les détails de l'email dans la liste
             $emailDetails[] = sprintf(
                 "Email envoyé à %s (%s) pour l'animal %s, visite prévue le %s.",
                 $user->getFirstname() . ' ' . $user->getLastname(),
@@ -54,9 +72,15 @@ class SendVisitNotificationsHandler
                 $visit->getVisitDate()->format('Y-m-d H:i')
             );
 
+            // Pause pour éviter l'envoi trop rapide
             if ($index < count($visitsToNotify) - 1) {
-                sleep(1);
+                sleep(1); // Pause de 1 seconde
             }
         }
+
+        // Sortir le résultat
+        $output->writeln(empty($emailDetails) ? 'Aucun email envoyé.' : implode("\n", $emailDetails));
+
+        return Command::SUCCESS;
     }
 }
