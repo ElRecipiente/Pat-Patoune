@@ -29,6 +29,8 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
+    color: var(--color-primary);
+    font-family: var(--body-font);
 }
 /* RESET */
 
@@ -40,11 +42,6 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-}
-
-p {
-    color: var(--color-primary);
-    font-family: var(--body-font);
 }
 
 header {
@@ -77,45 +74,73 @@ header a {
     color: var(--color-primary);
 }
 
+/****** NICOW : J'ai fait des modifs de ici ******/
 .container {
+    margin: 0.5em auto;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
     width: 80%;
     flex: 1;
-}
-
-.container > * {
-    margin: 0.5em;
     padding: 0.5em;
-    width: 50%;
 }
 
-.button {
+#homepage > * {
+    width: 50%;
+    margin: 36px auto;
+}
+
+#homepage .button {
+    width: 50%;
+    margin: 24px auto 0 auto;
+}
+
+button, .button {
     display: block;
     text-decoration: none;
     color: var(--color-background);
     background-color: var(--color-secondary);
     padding: 12px;
     margin: 12px 12px 12px 0;
-    width: fit-content;
+    width: 100%;
+    text-align: center;
     border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.button.bg_white {
+button.bg_white, .button.bg_white {
     background-color: white;
     color: var(--color-primary);
+    border: 1px solid var(--color-primary);
 }
 
-.field {
+.field{
     background-color: white;
     color: var(--color-primary);
     padding: 12px;
-    margin: 12px 12px 12px 0;
-    width: fit-content;
     border-radius: 8px;
+    border: 1px solid var(--color-primary);
+    width: 100%;
 }
+
+.field.full {
+    margin: 12px 0;
+}
+
+.form {
+    width: 60%;
+    margin: 0 auto;
+}
+
+#health_booklet_form > * {
+    display: flex;
+    flex-flow: column;
+    padding: 12px;
+}
+/****** NICOW : Jusqu'à de ici ******/
 
 nav ul {
     list-style: none;
@@ -194,7 +219,7 @@ h2 {
     font-family: var(--title-font);
 }
 
-h2 {
+h3 {
     color: var(--color-primary);
     font-size: 20px;
     font-family: var(--title-font);
