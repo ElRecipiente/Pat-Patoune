@@ -12,9 +12,11 @@
         <ul>
             {% for key, value in animal_info %}
                 {% if value is not same as (animal_info.name) %}
-                    <li class="field full">{{ key }} : {{ value }}
-                        {% if value is empty %}Non défini{% endif %}
-                    </li>
+                    {% if value is empty %}
+                        <li class="field full">{{ key }} : N/A</li>
+                    {% else %}
+                        <li class="field full">{{ key }} : {{ value }}</li>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </ul>
