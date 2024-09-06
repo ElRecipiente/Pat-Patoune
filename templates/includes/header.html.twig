@@ -1,9 +1,26 @@
 <header class="header">
     <nav class="header__nav">
-        <!-- Add your navigation links here -->
         <ul class="header__links">
-            <li><a href="/"><img class="header__logo" src="{{ asset('images/logo_patpatoune_desktop.png') }}" alt="Logo Pat Patoune"></a></li>
-            <li><a href="/login"><img class="header__account" img src="{{ asset('images/account.png') }}" alt="Logo Pat Patoune"></a></li>
+            <li>
+                <a href="/">
+                    <img class="header__logo" src="{{ asset('images/logo_patpatoune_desktop.png') }}" alt="Logo Pat Patoune">
+                </a>
+            </li>
+            {% if app.user %}
+                <!-- Utilisateur connecté -->
+                <li>
+                    <a href="/logout">
+                        <img class="header__account" src="{{ asset('images/disconnect.png') }}" alt="Profil Utilisateur"><p>Se déconnecter</p>
+                    </a>
+                </li>
+            {% else %}
+                <!-- Utilisateur non connecté -->
+                <li>
+                    <a href="/login">
+                        <img class="header__account" src="{{ asset('images/account.png') }}" alt="Connexion"><p>Se connecter</p>
+                    </a>
+                </li>
+            {% endif %}
         </ul>
     </nav>
 </header>
