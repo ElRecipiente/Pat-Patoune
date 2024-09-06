@@ -29,4 +29,14 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    #[Route(path: '/access-denied', name: 'access_denied')]
+    public function accessDenied(): Response
+    {
+        return $this->render('security/access_denied.html.twig', [
+            'title' => '403 : Oups ! Mauvais chemin !',
+            'message' => "Désolé ! On ne sait pas comment vous êtes arrivés là, mais vous n'avez pas accès à cette page.",
+        ]);
+    }
+
 }

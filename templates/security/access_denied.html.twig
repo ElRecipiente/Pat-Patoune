@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wrong way !
+{% endblock %}
+
+{% block body %}
+    <div class="breadcrumb_custom">
+        {% include 'includes/back_personnal_space.html.twig' %}
+    </div>
+
+    <div>
+        <h1>{{ title }}</h1>
+        <p>{{ message }}</p>
+    </div>
+{% endblock %}

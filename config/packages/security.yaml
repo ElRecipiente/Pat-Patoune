@@ -20,6 +20,7 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
+            access_denied_handler: App\Security\AccessDeniedHandler
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -36,10 +37,10 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/visit/nextVisit, roles: ROLE_ADMIN }
-         - { path: ^/account, roles: ROLE_USER }
-         - { path: ^/carnet, roles: ROLE_USER }
-         - { path: ^/modifier_le_carnet_de_sante, roles: ROLE_USER }
-         - { path: ^/visit, roles: ROLE_USER }
+         - { path: ^/account, roles: IS_AUTHENTICATED_FULLY }
+         - { path: ^/carnet, roles: IS_AUTHENTICATED_FULLY }
+         - { path: ^/modifier_le_carnet_de_sante, roles: IS_AUTHENTICATED_FULLY }
+         - { path: ^/visit, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:
