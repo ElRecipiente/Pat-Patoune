@@ -4,7 +4,7 @@
 First, install dependencies : *composer install*
 Next, just need to use the symfony command : *symfony server:start*
 
-### CONFIGURE MAILER AND CRON TASK
+### CONFIGURE MAILER 
 Enable send mail in local
 You can red this doc https://www.axess.fr/blog/conception-web/tester-lenvoi-demails-en-local-avec-une-configuration-offline-pour-apache
 
@@ -57,6 +57,7 @@ Generate Controller : *php bin/console make:controller Login*
     run : *crontab -e*
 
     run : *0 7* * * * */path/to/php /path/to/project/bin/console send:visit-notifications*
+    
     (For exemple : 0 7 * * * /usr/bin/php /home/user/projects/Pat-Patoune/bin/console send:visit-notifications)
 
 
@@ -76,3 +77,4 @@ in .env define *VISIT_NOTIFICATION_DELAY=27* and adapt the delay
 **Launch this command on server start :**
 
 run : *php bin/console send:visit-notifications*
+
