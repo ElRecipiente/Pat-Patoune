@@ -140,6 +140,10 @@ button.bg_white, .button.bg_white {
     flex-flow: column;
     padding: 12px;
 }
+
+.breadcrumb_custom {
+    align-self: flex-start;
+}
 /****** NICOW : Jusqu'à de ici ******/
 
 nav ul {

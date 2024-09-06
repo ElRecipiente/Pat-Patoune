@@ -3,6 +3,10 @@
 {% block title %}Modifier le carnet de santé{% endblock %}
 
 {% block body %}
+    <div class="breadcrumb_custom">
+        {% include 'includes/back_personnal_space.html.twig' %}
+    </div>
+
     <div>
         <h1>Modifier le carnet de santé de {{ animal.name }}</h1>
 

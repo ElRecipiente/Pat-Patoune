@@ -3,7 +3,9 @@
 {% block title %}Carnet de santé{% endblock %}
 
 {% block body %}
-    {% include 'includes/back_personnal_space.html.twig' %}
+    <div class="breadcrumb_custom">
+        {% include 'includes/back_personnal_space.html.twig' %}
+    </div>
 
     <div>
         <h2>Carnet de santé de {{ animal_info.name }}</h2>
