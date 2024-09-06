@@ -25,7 +25,7 @@ Use Doctrine : *composer require symfony/orm-pack && composer require --dev symf
 
 ### DATABASE & MIGRATION  
 Enable the right DATABASE_URL in .env : *DATABASE_URL="mysql://username:password@127.0.0.1/PatPatoune?serverVersion=8.0.36-0ubuntu0.22.04.1&charset=utf8mb4"*  
-Create database : *php bin/console doctrine\:database\:create*  
+Create database : *php bin/console doctrine:database:create*  
 Create entities : *php bin/console make:entity Entity*  
 Make migrations & migrate : *php bin/console make:migration && php bin/console doctrine\:migrations\:migrate*  
 

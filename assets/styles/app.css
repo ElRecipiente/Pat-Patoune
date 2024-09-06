@@ -80,9 +80,9 @@ header a {
     display: flex;
     flex-flow: column;
     align-items: center;
-    width: 80%;
+    width: 100%;
     flex: 1;
-    padding: 0.5em;
+    padding: 20px;
 }
 
 #homepage > * {
@@ -198,20 +198,19 @@ footer {
 }
 
 .login-wrapper {
-    background-color: var(--color-background);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 100%;
     text-align: center;
 }
 
+.login__p__highlight, .login__label, .register__p__highlight {
+    font-family: var(--title-font);
+}
+.login__input {
+   width: 100% !important;
+}
+
 .register-wrapper {
-    background-color: var(--color-background);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 100%;
     text-align: center;
 }
 
@@ -242,13 +241,39 @@ h3 {
     display: block;
     margin-bottom: 5px;
     text-align: left;
+    font-family: var(--title-font);
 }
 
 .input-group input {
-    width: 90%;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.input__flex_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.input__flex_row input {
+    width: auto;
+}
+
+.input-group button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--color-secondary);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: var(--title-font);
+    font-size: 18px;
 }
 
 .error {
@@ -269,6 +294,10 @@ h3 {
 
 
 @media (min-width: 768px) {
+    .login-wrapper, .register-wrapper {
+        width: 33%;
+    }
+
     p {
         font-size: 18px;
     }
