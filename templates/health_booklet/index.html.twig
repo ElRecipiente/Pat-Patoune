@@ -3,6 +3,7 @@
 {% block title %}Carnet de santé{% endblock %}
 
 {% block body %}
+    {% include 'includes/back_personnal_space.html.twig' %}
 
     <div>
         <h2>Carnet de santé de {{ animal_info.name }}</h2>
@@ -17,6 +18,6 @@
         </ul>
         <a class="button" href={{ link_to_edit }}>Modifier les informations du carnet</a>
     </div>
-    {% include 'includes/back_personnal_space.html.twig' %}
+
 
 {% endblock %}

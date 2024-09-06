@@ -7,7 +7,5 @@
         <h1>Modifier le carnet de santé de {{ animal.name }}</h1>
 
         {{ include('health_booklet/_form.html.twig', {'button_label': 'Update'}) }}
-
-{#        <a class="button" href="{{ path('app_health_booklet', {'id': animal.id}) }}">Retour</a>#}
     </div>
 {% endblock %}
