@@ -26,15 +26,19 @@
 			<br>
 
 			<div class="input-group">
-				<label for="username">Email :</label>
-				<input type="text" id="username" name="_username" value="{{ last_username }}" required>
+				<label class="login__label" for="username">Email :</label>
+				<input class="login__input" type="text" id="username" name="_username" value="{{ last_username }}" required>
 			</div>
 			<div class="input-group">
-				<label for="password">Mot de passe :</label>
-				<input type="password" id="password" name="_password" required>
+				<label class="login__label" for="password">Mot de passe :</label>
+				<input class="login__input" type="password" id="password" name="_password" required>
 			</div>
 			<div class="input-group">
 				<button class="button" type="submit">Se connecter</button>
+			</div>
+			<div class="input-group">
+				<p class="login__p__highlight">Pas encore de compte?</p>
+				<a class="login__p__highlight" href="/register">S'inscrire</a>
 			</div>
 			<input
 			type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
