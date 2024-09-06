@@ -47,17 +47,32 @@ Generate Controller : *php bin/console make:controller Login*
 Install dependencie : *composer require symfonycasts/verify-email-bundle*  
 Generate Controller : *php bin/console make:controller Login*  
 
-### CONFIGURE TASK CRON
+### CONFIGURE CRON TASK
+
+(if not present) Generate command : *php bin/console make:command SendMailCommand* and
+
+**Configure cron task :**
+ - Linux :
+
+    run : *crontab -e*
+
+    run : *0 7* * * * */path/to/php /path/to/project/bin/console send:visit-notifications*
+    (For exemple : 0 7 * * * /usr/bin/php /home/user/projects/Pat-Patoune/bin/console send:visit-notifications)
 
 
-(if not present) Generate command : *php bin/console make:command SendMailCommand* and 
-Configure cron task :
- - Linux : 
-    *crontab -e*
-    * * * * * /usr/bin/php /path/to/your/project/bin/console app:send-mail >> /dev/null 2>&1
- - Windows : 
-    *schtasks /create /sc minute /mo 1 /tn "SendMailTask" /tr "\"C:\path\to\php\php.exe\" \"C:\path\to\project\bin\console\" app:send-mail"*
+ - Windows :
 
-Run task : *php bin/console send:visit-notifications*
+    run : *schtasks /create /sc minute /mo 1 /tn "SendMailTask" /tr "\"C:\path\to\php\php.exe\" \"C:\path\to\project\bin\console\" app:send-mail"*
 
-Enable task when project launch : ?????????????
+    (For exemple : schtasks /create /sc daily /tn "SendMailTask" /tr "\"C:\wamp64\bin\php\php8.2.13\php.exe\" \"C:\---CODE---\SIMPLON_2024\Pat-Patoune\bin\console\" send:visit-notifications" /st 07:00)
+
+    To delete this task : *schtasks /delete /tn "SendMailTask" /f*
+
+
+**Define how many days before visit send notification**
+
+in .env define *VISIT_NOTIFICATION_DELAY=27* and adapt the delay
+
+**Launch this command on server start :**
+
+run : *php bin/console send:visit-notifications*
