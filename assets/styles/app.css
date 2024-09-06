@@ -150,11 +150,16 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
+    display: flex;  
+    text-align: center;
 }
 
 nav li {
     margin: 0 10px;
+}
+
+nav li p {
+    font-size: 10px;
 }
 
 nav a {
