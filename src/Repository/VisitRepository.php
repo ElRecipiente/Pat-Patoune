@@ -45,8 +45,9 @@ class VisitRepository extends ServiceEntityRepository
 
     public function findVisitToNotify()
     {
-        // définir le nombre de jour avant d'envoyer la notif
-        $notifyDate = (new \DateTime())->modify('+28 days')->setTime(0, 0, 0);
+        // définir le nombre de jour avant d'envoyer la notif, à modifier dans le .env
+        $delai = $_ENV['VISIT_NOTIFICATION_DELAY'] ?? null;
+        $notifyDate = (new \DateTime())->modify('+' . $delai . ' days')->setTime(0, 0, 0);
 
         return $this->createQueryBuilder('v')
             ->leftJoin('v.animal', 'a')
