@@ -79,7 +79,6 @@ header a {
     margin: 0.5em auto;
     display: flex;
     flex-flow: column;
-    justify-content: center;
     align-items: center;
     width: 80%;
     flex: 1;
@@ -142,6 +141,7 @@ button.bg_white, .button.bg_white {
 }
 
 .breadcrumb_custom {
+    margin: 24px;
     align-self: flex-start;
 }
 /****** NICOW : Jusqu'à de ici ******/
