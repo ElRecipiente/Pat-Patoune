@@ -3,8 +3,12 @@
 {% block title %}Visit index{% endblock %}
 
 {% block body %}
+    <div class="breadcrumb_custom">
+        {% include 'includes/back_personnal_space.html.twig' %}
+    </div>
+
 <div class="visit">
-    {% include 'includes/back_personnal_space.html.twig' %}
+
     <h1>Visites de {{ animal.name }}</h1>
 
     {% set sortedVisits = visits|sort((a, b) => b.visitDate <=> a.visitDate) %}
