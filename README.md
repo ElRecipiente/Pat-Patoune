@@ -74,7 +74,6 @@ Generate Controller : *php bin/console make:controller Login*
 
 in .env define *VISIT_NOTIFICATION_DELAY=27* and adapt the delay
 
-**Launch this command on server start :**
 
-run : *php bin/console send:visit-notifications*
+**All days at 7 an email send at all user witch the visit is in VISIT_NOTIFICATION_DELAY**
 
