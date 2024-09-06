@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div class="login-wrapper">
-		<h1>Login</h1>
+		<h1>Se connecter</h1>
 		<form method="post">
 			{% if error %}
 				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -15,9 +15,15 @@
 				<div class="mb-3"><p>
 					Vous êtes connecté sous
 					{{ app.user.userIdentifier }},</p>
-					<a href="{{ path('admin') }}">Administration</a>
+					{% for role in app.user.roles %}
+						{% if role is same as('ROLE_ADMIN') %}
+						<a href="{{ path('admin') }}">Administration</a>
+						{% endif %}
+					{% endfor %}
 				</div>
 			{% endif %}
+
+			<br>
 
 			<div class="input-group">
 				<label for="username">Email :</label>
@@ -28,7 +34,7 @@
 				<input type="password" id="password" name="_password" required>
 			</div>
 			<div class="input-group">
-				<button type="submit">Se connecter</button>
+				<button class="button" type="submit">Se connecter</button>
 			</div>
 			<input
 			type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
