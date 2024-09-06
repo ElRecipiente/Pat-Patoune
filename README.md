@@ -4,7 +4,7 @@
 First, install dependencies : *composer install*
 Next, just need to use the symfony command : *symfony server:start*
 
-### CONFIGURE MAILER
+### CONFIGURE MAILER AND CRON TASK
 Enable send mail in local
 You can red this doc https://www.axess.fr/blog/conception-web/tester-lenvoi-demails-en-local-avec-une-configuration-offline-pour-apache
 
@@ -14,6 +14,7 @@ Install MailHog width Docker with this command : *docker run -d -p 1025:1025 -p 
 
 Edit your .env and .env.test :
 *MAILER_DSN=smtp://localhost:1025*
+*VISIT_NOTIFICATION_DELAY=27*  you can choose how many days before you want send the notification
 
 ## TUTORIAL : How we made this project  
 
@@ -47,7 +48,9 @@ Install dependencie : *composer require symfonycasts/verify-email-bundle*
 Generate Controller : *php bin/console make:controller Login*  
 
 ### CONFIGURE TASK CRON
-(if not present) Generate command : *php bin/console make:command SendMailCommand*
+
+
+(if not present) Generate command : *php bin/console make:command SendMailCommand* and 
 Configure cron task :
  - Linux : 
     *crontab -e*
@@ -55,6 +58,6 @@ Configure cron task :
  - Windows : 
     *schtasks /create /sc minute /mo 1 /tn "SendMailTask" /tr "\"C:\path\to\php\php.exe\" \"C:\path\to\project\bin\console\" app:send-mail"*
 
-Run task : *php bin/console app:send-mail*
+Run task : *php bin/console send:visit-notifications*
 
 Enable task when project launch : ?????????????
